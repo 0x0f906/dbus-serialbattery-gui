@@ -63,12 +63,12 @@ class ConfigEditor(QMainWindow):
         self.load_button.clicked.connect(self.load_config_file)
         button_layout.addWidget(self.load_button)
 
-        # Add Pull Remote Config button
+        # Pull Remote Config button
         self.pull_remote_button = QPushButton("Pull Remote Config", self)
         self.pull_remote_button.clicked.connect(self.pull_remote_config)
         button_layout.addWidget(self.pull_remote_button)
 
-        # Add Push Local Config button
+        # Push Local Config button
         self.push_local_button = QPushButton("Push Config to Remote", self)
         self.push_local_button.clicked.connect(self.push_local_config)
         button_layout.addWidget(self.push_local_button)
@@ -77,15 +77,15 @@ class ConfigEditor(QMainWindow):
         self.save_button.clicked.connect(self.save_config_file)
         button_layout.addWidget(self.save_button)
 
-        # Add SSH Config button
+        # SSH Config button
         self.ssh_config_button = QPushButton("SSH Config", self)
         self.ssh_config_button.clicked.connect(self.configure_ssh)
         button_layout.addWidget(self.ssh_config_button)
 
-        # Add Restart dbus-serialbattery button
-        self.restart_button = QPushButton("Restart dbus-serialbattery", self)
-        self.restart_button.clicked.connect(self.restart_dbus_serialbattery)
-        button_layout.addWidget(self.restart_button)
+        # Apply config button
+        self.apply_config_button = QPushButton("Apply Remote Config", self)
+        self.apply_config_button.clicked.connect(self.apply_config)
+        button_layout.addWidget(self.apply_config_button)
 
         self.close_button = QPushButton("Close", self)
         self.close_button.clicked.connect(self.close)
@@ -315,13 +315,13 @@ class ConfigEditor(QMainWindow):
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to push local config to remote location: {str(e)}")
 
-    def restart_dbus_serialbattery(self):
+    def apply_config(self):
         # Ensure SSH settings are configured
         if not hasattr(self, 'ssh_settings'):
             QMessageBox.critical(self, "Error", "SSH settings are not configured. Please use SSH Config to set them up.")
             return
 
-        reply = QMessageBox.question(self, 'Confirmation', 'Are you sure you want to restart dbus-serialbattery?',
+        reply = QMessageBox.question(self, 'Confirmation', 'Are you sure you want apply the config? This will restart the dbus-serialbattery driver',
                                      QMessageBox.Yes | QMessageBox.No)
         if reply == QMessageBox.Yes:
             try:
@@ -339,10 +339,10 @@ class ConfigEditor(QMainWindow):
 
                 ssh_client.close()
 
-                QMessageBox.information(self, "Success", "dbus-serialbattery restarted successfully.")
+                QMessageBox.information(self, "Success", "config has been applied.")
 
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to restart dbus-serialbattery: {str(e)}")
+                QMessageBox.critical(self, "Error", f"Failed to restart apply config {str(e)}")
 
 class SSHConfigDialog(QDialog):
     def __init__(self, parent=None):
