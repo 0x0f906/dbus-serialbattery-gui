@@ -58,6 +58,7 @@ class ConfigEditor(QMainWindow):
         self.scroll_area = self.create_scroll_area()
         self.layout.addWidget(self.scroll_area)
 
+        # Load Local Config button
         button_layout = QHBoxLayout()  # Create a horizontal layout for buttons
         self.load_button = QPushButton("Load Local Config", self)
         self.load_button.clicked.connect(self.load_config_file)
@@ -73,20 +74,22 @@ class ConfigEditor(QMainWindow):
         self.push_local_button.clicked.connect(self.push_local_config)
         button_layout.addWidget(self.push_local_button)
 
+        #Save Config button
         self.save_button = QPushButton("Save Config", self)
         self.save_button.clicked.connect(self.save_config_file)
         button_layout.addWidget(self.save_button)
-
-        # SSH Config button
-        self.ssh_config_button = QPushButton("SSH Config", self)
-        self.ssh_config_button.clicked.connect(self.configure_ssh)
-        button_layout.addWidget(self.ssh_config_button)
 
         # Apply config button
         self.apply_config_button = QPushButton("Apply Remote Config", self)
         self.apply_config_button.clicked.connect(self.apply_config)
         button_layout.addWidget(self.apply_config_button)
 
+        # SSH Config button
+        self.ssh_config_button = QPushButton("SSH Config", self)
+        self.ssh_config_button.clicked.connect(self.configure_ssh)
+        button_layout.addWidget(self.ssh_config_button)
+
+        # Close button 
         self.close_button = QPushButton("Close", self)
         self.close_button.clicked.connect(self.close)
         button_layout.addWidget(self.close_button)
