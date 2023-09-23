@@ -1,4 +1,4 @@
-#dbus-serialbattery-gui
+# dbus-serialbattery-gui
 
 ![dbus-serialbattery-gui](images/screenshots/gui.png)
 
