@@ -42,9 +42,7 @@ Steps
 
 3. Run the application:
 
-   python your_app_name.py
-
-   Replace your_app_name.py with the name of your main Python script.
+   python3 dbus-serialbattery-gui.py
 
 Usage
 
