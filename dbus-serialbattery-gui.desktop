@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.1
+Type=Application
+Name=dbus-serialbattery-gui
+Exec=python3 /path/to/your/project/dbus-serialbattery-gui.py
+Icon=/path/to/your/icon.png
+Terminal=false
+StartupNotify=true
+Categories=Utility;Development;
